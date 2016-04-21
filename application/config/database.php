@@ -118,4 +118,4 @@ else
 /* End of file database.php */
 /* Location: ./application/config/database.php */
 
-Success!
+//Success!
