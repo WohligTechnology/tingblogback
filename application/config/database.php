@@ -1,3 +1,8 @@
+
+Editing:  
+/home/wohligco/public_html/tingblogback/application/config/database.php
+ Encoding:    Re-open Use Code Editor     Close  Save Changes
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
@@ -55,9 +60,9 @@ $myserver=$_SERVER['SERVER_NAME'];
 if($myserver!="localhost")
 {
     $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'wohligco_avinash';
-    $db['default']['password'] = 'avi';
-    $db['default']['database'] = 'avi';
+    $db['default']['username'] = 'wohligco_tingb';
+    $db['default']['password'] = 'chintan123';
+    $db['default']['database'] = 'wohligco_tingb';
     $db['default']['dbdriver'] = 'mysql';
     $db['default']['dbprefix'] = '';
     $db['default']['pconnect'] = TRUE;
@@ -112,3 +117,5 @@ else
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
+
+Success!
