@@ -705,9 +705,9 @@ $access=array("1");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("name","name","trim");
-$this->form_validation->set_rules("image","image","trim");
-$this->form_validation->set_rules("video","video","trim");
-$this->form_validation->set_rules("description","description","trim");
+// $this->form_validation->set_rules("image","image","trim");
+// $this->form_validation->set_rules("video","video","trim");
+// $this->form_validation->set_rules("description","description","trim");
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
@@ -724,46 +724,19 @@ $name=$this->input->get_post("name");
 $video=$this->input->get_post("video");
 $description=$this->input->get_post("description");
 $config['upload_path'] = './uploads/';
-		 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-		 $this->load->library('upload', $config);
-		 $filename="image";
-		 $image="";
-		 if (  $this->upload->do_upload($filename))
-		 {
-			 $uploaddata = $this->upload->data();
-			 $image=$uploaddata['file_name'];
-
-							 $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
-							 $config_r['maintain_ratio'] = TRUE;
-							 $config_t['create_thumb'] = FALSE;///add this
-							 // $config_r['width']   = 800;
-							 // $config_r['height'] = 800;
-							 $config_r['quality']    = 100;
-							 //end of configs
-
-							 $this->load->library('image_lib', $config_r);
-							 $this->image_lib->initialize($config_r);
-							 if(!$this->image_lib->resize())
-							 {
-									 echo "Failed." . $this->image_lib->display_errors();
-									 //return false;
-							 }
-							 else
-							 {
-									 //print_r($this->image_lib->dest_image);
-									 //dest_image
-									 $image=$this->image_lib->dest_image;
-									 //return false;
-							 }
-
-		 }
-
-					 if($image=="")
-					 {
-					 $image=$this->productimage_model->getImageById($id);
-							// print_r($image);
-							 $image=$image->image;
-					 }
+            $config['allowed_types'] = 'gif|jpg|png';
+            $this->load->library('upload', $config);
+            $filename = 'image';
+            $image = '';
+            if ($this->upload->do_upload($filename)) {
+                $uploaddata = $this->upload->data();
+                $image = $uploaddata['file_name'];
+            }
+            if ($image == '') {
+                $image = $this->blog_model->getimagebyid($id);
+                    // print_r($image);
+                     $image = $image->image;
+            }
 
 if($this->blog_model->edit($id,$name,$image,$video,$description)==0)
 $data["alerterror"]="New blog could not be Updated.";
@@ -771,6 +744,7 @@ else
 $data["alertsuccess"]="blog Updated Successfully.";
 $data["redirect"]="site/viewblog";
 $this->load->view("redirect",$data);
+// $this->load->view('templatewith2', $data);
 }
 }
 public function deleteblog()
@@ -1007,7 +981,7 @@ public function editgifsubmit()
 $access=array("1");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","id","trim");
-$this->form_validation->set_rules("name","name","trim");
+// $this->form_validation->set_rules("name","name","trim");
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
@@ -1019,8 +993,22 @@ $this->load->view("template",$data);
 else
 {
 $id=$this->input->get_post("id");
-$name=$this->input->get_post("name");
-if($this->gif_model->edit($id,$name)==0)
+// $name=$this->input->get_post("name");
+$config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $this->load->library('upload', $config);
+            $filename = 'image';
+            $image = '';
+            if ($this->upload->do_upload($filename)) {
+                $uploaddata = $this->upload->data();
+                $image = $uploaddata['file_name'];
+            }
+            if ($image == '') {
+                $image = $this->gif_model->getimagebyid($id);
+                    // print_r($image);
+                     $image = $image->image;
+            }
+if($this->gif_model->edit($id,$image)==0)
 $data["alerterror"]="New gif could not be Updated.";
 else
 $data["alertsuccess"]="gif Updated Successfully.";

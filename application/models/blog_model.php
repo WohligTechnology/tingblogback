@@ -26,12 +26,9 @@ return $query;
 }
 public function edit($id,$name,$image,$video,$description)
 {
-if($image=="")
-{
-$image=$this->blog_model->getimagebyid($id);
-$image=$image->image;
-}
-$data=array("name" => $name,"image" => $image,"video" => $video,"description" => $description);
+$data=array("name" => $name,"video" => $video,"description" => $description);
+if($image != "")
+  $data['image']=$image;
 $this->db->where( "id", $id );
 $query=$this->db->update( "tingblog_blog", $data );
 return 1;

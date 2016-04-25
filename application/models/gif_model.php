@@ -24,14 +24,11 @@ $this->db->where("id",$id);
 $query=$this->db->get("tingblog_gif")->row();
 return $query;
 }
-public function edit($id,$name)
+public function edit($id,$image)
 {
-if($image=="")
-{
-$image=$this->gif_model->getimagebyid($id);
-$image=$image->image;
-}
-$data=array("name" => $name);
+$data=array("image" => $image);
+if($image != "")
+  $data['image']=$image;
 $this->db->where( "id", $id );
 $query=$this->db->update( "tingblog_gif", $data );
 return 1;
