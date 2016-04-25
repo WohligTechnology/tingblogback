@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class gif_model extends CI_Model
 {
-public function create($image)
+public function create($image,$order)
 {
-$data=array("image" => $image);
+$data=array("image" => $image,"order" => $order);
 $query=$this->db->insert( "tingblog_gif", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,9 +24,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("tingblog_gif")->row();
 return $query;
 }
-public function edit($id,$image)
+public function edit($id,$image,$order)
 {
-$data=array("image" => $image);
+$data=array("order" => $order);
 if($image != "")
   $data['image']=$image;
 $this->db->where( "id", $id );
@@ -55,6 +55,12 @@ foreach($query as $row)
 $return[$row->id]=$row->name;
 }
 return $return;
+}
+
+public function getgif()
+{
+  $query = $this->db->query("SELECT * FROM `tingblog_gif` WHERE 1 ORDER BY `order` ASC")->result();
+  return $query;
 }
 }
 ?>

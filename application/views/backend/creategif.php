@@ -4,6 +4,12 @@
 </div>
 <form class='col s12' method='post' action='<?php echo site_url("site/creategifsubmit");?>' enctype= 'multipart/form-data'>
   <div class="row">
+  <div class="input-field col s6">
+  <label for="name">order</label>
+  <input type="text" id="order" name="order" value='<?php echo set_value('order');?>'>
+  </div>
+  </div>
+  <div class="row">
   <div class="file-field input-field col s12 m6">
   <div class="btn blue darken-4">
   <span>Image</span>

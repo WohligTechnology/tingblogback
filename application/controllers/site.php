@@ -892,6 +892,11 @@ $elements[1]->field="`tingblog_gif`.`image`";
 $elements[1]->sort="1";
 $elements[1]->header="image";
 $elements[1]->alias="image";
+$elements[2]=new stdClass();
+$elements[2]->field="`tingblog_gif`.`order`";
+$elements[2]->sort="1";
+$elements[2]->header="order";
+$elements[2]->alias="order";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -925,6 +930,7 @@ $this->checkaccess($access);
 // $this->form_validation->set_rules("image","image","trim");
 
 $id=$this->input->get_post("id");
+$order=$this->input->get_post("order");
 $config['upload_path'] = './uploads/';
 		 $config['allowed_types'] = '*';
 		 $this->load->library('upload', $config);
@@ -959,12 +965,12 @@ $config['upload_path'] = './uploads/';
 							 }
 
 
-if($this->gif_model->create($image)==0)
+if($this->gif_model->create($image,$order)==0)
 $data["alerterror"]="New gif could not be created.";
 else
 $data["alertsuccess"]="gif created Successfully.";
-// $data["redirect"]="site/viewgif";
-// $this->load->view("redirect",$data);
+$data["redirect"]="site/viewgif";
+$this->load->view("redirect",$data);
 }
 }
 public function editgif()
@@ -993,7 +999,7 @@ $this->load->view("template",$data);
 else
 {
 $id=$this->input->get_post("id");
-// $name=$this->input->get_post("name");
+$order=$this->input->get_post("order");
 $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
             $this->load->library('upload', $config);
@@ -1008,7 +1014,7 @@ $config['upload_path'] = './uploads/';
                     // print_r($image);
                      $image = $image->image;
             }
-if($this->gif_model->edit($id,$image)==0)
+if($this->gif_model->edit($id,$image,$order)==0)
 $data["alerterror"]="New gif could not be Updated.";
 else
 $data["alertsuccess"]="gif Updated Successfully.";

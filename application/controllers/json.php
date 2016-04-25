@@ -163,6 +163,13 @@ $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder
 $this->load->view("json",$data);
 }
 
+public function getgif()
+{
+// $id=$this->input->get_post("id");
+$data["message"]=$this->gif_model->getgif();
+$this->load->view("json",$data);
+}
+
 
 
 } ?>
