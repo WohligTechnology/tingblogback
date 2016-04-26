@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 21, 2016 at 07:39 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 7.0.0
+-- Host: 127.0.0.1
+-- Generation Time: Apr 26, 2016 at 07:42 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.5.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `tingblog`
@@ -26,10 +26,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `accesslevel`
 --
 
-CREATE TABLE `accesslevel` (
+CREATE TABLE IF NOT EXISTS `accesslevel` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accesslevel`
@@ -46,10 +46,10 @@ INSERT INTO `accesslevel` (`id`, `name`) VALUES
 -- Table structure for table `logintype`
 --
 
-CREATE TABLE `logintype` (
+CREATE TABLE IF NOT EXISTS `logintype` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logintype`
@@ -67,7 +67,7 @@ INSERT INTO `logintype` (`id`, `name`) VALUES
 -- Table structure for table `menu`
 --
 
-CREATE TABLE `menu` (
+CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE `menu` (
   `isactive` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `icon` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
@@ -97,7 +97,7 @@ INSERT INTO `menu` (`id`, `name`, `description`, `keyword`, `url`, `linktype`, `
 -- Table structure for table `menuaccess`
 --
 
-CREATE TABLE `menuaccess` (
+CREATE TABLE IF NOT EXISTS `menuaccess` (
   `menu` int(11) NOT NULL,
   `access` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -127,11 +127,11 @@ INSERT INTO `menuaccess` (`menu`, `access`) VALUES
 -- Table structure for table `pageaccesslevel`
 --
 
-CREATE TABLE `pageaccesslevel` (
+CREATE TABLE IF NOT EXISTS `pageaccesslevel` (
   `id` int(11) NOT NULL,
   `page` int(11) NOT NULL,
   `accesslevel` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pageaccesslevel`
@@ -149,11 +149,11 @@ INSERT INTO `pageaccesslevel` (`id`, `page`, `accesslevel`) VALUES
 -- Table structure for table `projectaccesslevel`
 --
 
-CREATE TABLE `projectaccesslevel` (
+CREATE TABLE IF NOT EXISTS `projectaccesslevel` (
   `id` int(11) NOT NULL,
   `project` int(11) NOT NULL,
   `accesslevel` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projectaccesslevel`
@@ -169,10 +169,10 @@ INSERT INTO `projectaccesslevel` (`id`, `project`, `accesslevel`) VALUES
 -- Table structure for table `statuses`
 --
 
-CREATE TABLE `statuses` (
+CREATE TABLE IF NOT EXISTS `statuses` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `statuses`
@@ -191,11 +191,11 @@ INSERT INTO `statuses` (`id`, `name`) VALUES
 -- Table structure for table `tagsblog`
 --
 
-CREATE TABLE `tagsblog` (
+CREATE TABLE IF NOT EXISTS `tagsblog` (
   `id` int(11) NOT NULL,
   `blog` int(11) NOT NULL,
   `tag` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tagsblog`
@@ -211,14 +211,14 @@ INSERT INTO `tagsblog` (`id`, `blog`, `tag`) VALUES
 -- Table structure for table `tingblog_blog`
 --
 
-CREATE TABLE `tingblog_blog` (
+CREATE TABLE IF NOT EXISTS `tingblog_blog` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `video` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tingblog_blog`
@@ -233,10 +233,10 @@ INSERT INTO `tingblog_blog` (`id`, `name`, `image`, `video`, `description`, `tim
 -- Table structure for table `tingblog_gif`
 --
 
-CREATE TABLE `tingblog_gif` (
+CREATE TABLE IF NOT EXISTS `tingblog_gif` (
   `id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tingblog_gif`
@@ -251,10 +251,10 @@ INSERT INTO `tingblog_gif` (`id`, `image`) VALUES
 -- Table structure for table `tingblog_tags`
 --
 
-CREATE TABLE `tingblog_tags` (
+CREATE TABLE IF NOT EXISTS `tingblog_tags` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tingblog_tags`
@@ -270,7 +270,7 @@ INSERT INTO `tingblog_tags` (`id`, `name`) VALUES
 -- Table structure for table `title`
 --
 
-CREATE TABLE `title` (
+CREATE TABLE IF NOT EXISTS `title` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL
@@ -282,7 +282,7 @@ CREATE TABLE `title` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -328,7 +328,7 @@ CREATE TABLE `user` (
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
   `pincode` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -344,13 +344,13 @@ INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp
 -- Table structure for table `userlog`
 --
 
-CREATE TABLE `userlog` (
+CREATE TABLE IF NOT EXISTS `userlog` (
   `id` int(11) NOT NULL,
   `onuser` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userlog`
@@ -398,8 +398,7 @@ INSERT INTO `userlog` (`id`, `onuser`, `status`, `description`, `timestamp`) VAL
 -- Indexes for table `accesslevel`
 --
 ALTER TABLE `accesslevel`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indexes for table `logintype`
@@ -481,52 +480,52 @@ ALTER TABLE `userlog`
 -- AUTO_INCREMENT for table `accesslevel`
 --
 ALTER TABLE `accesslevel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
 ALTER TABLE `logintype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pageaccesslevel`
 --
 ALTER TABLE `pageaccesslevel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `projectaccesslevel`
 --
 ALTER TABLE `projectaccesslevel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tagsblog`
 --
 ALTER TABLE `tagsblog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tingblog_blog`
 --
 ALTER TABLE `tingblog_blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tingblog_gif`
 --
 ALTER TABLE `tingblog_gif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tingblog_tags`
 --
 ALTER TABLE `tingblog_tags`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `title`
 --
@@ -536,12 +535,12 @@ ALTER TABLE `title`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
