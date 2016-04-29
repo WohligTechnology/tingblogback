@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class blog_model extends CI_Model
 {
-public function create($name,$image,$video,$description)
+public function create($name,$image,$image2,$video,$description)
 {
-$data=array("name" => $name,"image" => $image,"video" => $video,"description" => $description);
+$data=array("name" => $name,"image" => $image,"image2" => $image2,"video" => $video,"description" => $description);
 $query=$this->db->insert( "tingblog_blog", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,11 +24,13 @@ $this->db->where("id",$id);
 $query=$this->db->get("tingblog_blog")->row();
 return $query;
 }
-public function edit($id,$name,$image,$video,$description)
+public function edit($id,$name,$image,$image2,$video,$description)
 {
 $data=array("name" => $name,"video" => $video,"description" => $description);
 if($image != "")
   $data['image']=$image;
+if($image2 != "")
+  $data['image2']=$image2;
 $this->db->where( "id", $id );
 $query=$this->db->update( "tingblog_blog", $data );
 return 1;

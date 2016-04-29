@@ -30,6 +30,25 @@
    <!-- <span style=" display: block;
  ">700px X 450px</span> -->
  </div>
+
+ <div class="row">
+    <div class="file-field input-field col m6 s12">
+      <span class="img-center big">
+                                    <?php if($before->image2 == "") { } else {
+                                    ?><img src="<?php echo base_url('uploads')."/".$before->image2; ?>">
+                            <?php } ?>
+                            </span>
+      <div class="btn blue darken-4">
+        <span>Profile Image</span>
+        <input name="image2" type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Upload one or more files" value="<?php echo set_value('image2',$before->image2);?>">
+      </div>
+    </div>
+    <!-- <span style=" display: block;
+  ">700px X 450px</span> -->
+  </div>
 <div class="row">
 <div class="input-field col s6">
 <label for="video">video</label>

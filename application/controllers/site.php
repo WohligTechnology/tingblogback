@@ -644,39 +644,21 @@ $name=$this->input->get_post("name");
 $video=$this->input->get_post("video");
 $description=$this->input->get_post("description");
 $config['upload_path'] = './uploads/';
-		 $config['allowed_types'] = 'gif|jpg|png|jpeg';
-		 $this->load->library('upload', $config);
-		 $filename="image";
-		 $image="";
-		 if (  $this->upload->do_upload($filename))
-		 {
-			 $uploaddata = $this->upload->data();
-			 $image=$uploaddata['file_name'];
-
-							 $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
-							 $config_r['maintain_ratio'] = TRUE;
-							 $config_t['create_thumb'] = FALSE;///add this
-							 // $config_r['width']   = 800;
-							 // $config_r['height'] = 800;
-							 $config_r['quality']    = 100;
-							 //end of configs
-							 $this->load->library('image_lib', $config_r);
-							 $this->image_lib->initialize($config_r);
-							 if(!$this->image_lib->resize())
-							 {
-									 echo "Failed." . $this->image_lib->display_errors();
-									 //return false;
-							 }
-							 else
-							 {
-									 //print_r($this->image_lib->dest_image);
-									 //dest_image
-									 $image=$this->image_lib->dest_image;
-									 //return false;
-							 }
-
-		 }
-if($this->blog_model->create($name,$image,$video,$description)==0)
+				$config['allowed_types'] = 'gif|jpg|png';
+				$this->load->library('upload', $config);
+				$filename = 'image';
+				$image = '';
+				if ($this->upload->do_upload($filename)) {
+						$uploaddata = $this->upload->data();
+						$image = $uploaddata['file_name'];
+				}
+				$filename = 'image2';
+				$image2 = '';
+				if ($this->upload->do_upload($filename)) {
+						$uploaddata = $this->upload->data();
+						$image2 = $uploaddata['file_name'];
+				}
+if($this->blog_model->create($name,$image,$image2,$video,$description)==0)
 $data["alerterror"]="New blog could not be created.";
 else
 $data["alertsuccess"]="blog created Successfully.";
@@ -737,8 +719,19 @@ $config['upload_path'] = './uploads/';
                     // print_r($image);
                      $image = $image->image;
             }
+						$filename = 'image2';
+						$image2 = '';
+						if ($this->upload->do_upload($filename)) {
+								$uploaddata = $this->upload->data();
+								$image2 = $uploaddata['file_name'];
+						}
+						if ($image2 == '') {
+								$image2 = $this->blog_model->getimagebyid($id);
+										// print_r($image);
+										 $image2 = $image2->image2;
+						}
 
-if($this->blog_model->edit($id,$name,$image,$video,$description)==0)
+if($this->blog_model->edit($id,$name,$image,$image2,$video,$description)==0)
 $data["alerterror"]="New blog could not be Updated.";
 else
 $data["alertsuccess"]="blog Updated Successfully.";

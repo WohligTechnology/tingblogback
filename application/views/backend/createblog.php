@@ -23,6 +23,19 @@
 padding-top: 30px;"></span>
 </div>
 <div class="row">
+<div class="file-field input-field col s12 m6">
+<div class="btn blue darken-4">
+<span>Profile Image</span>
+<input type="file" name="image2" multiple>
+</div>
+<div class="file-path-wrapper">
+<input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image2');?>'>
+</div>
+</div>
+<span style=" display: block;
+padding-top: 30px;"></span>
+</div>
+<div class="row">
 <div class="input-field col s6">
 <label for="video">video</label>
 <input type="text" id="video" name="video" value='<?php echo set_value('video');?>'>
