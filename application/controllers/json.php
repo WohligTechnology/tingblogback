@@ -142,6 +142,7 @@ $this->chintantable->createelement("`tingblog_blog`.`id`", '1', "ID", "id");
 $this->chintantable->createelement("`tingblog_blog`.`name`", '1', "title", "title");
 $this->chintantable->createelement("`tingblog_blog`.`image`", '0', "image", "image");
 $this->chintantable->createelement("`tingblog_blog`.`video`", '0', "video", "video");
+$this->chintantable->createelement("`tingblog_blog`.`image2`", '0', "profileimage", "profileimage");
 $this->chintantable->createelement("`tingblog_blog`.`timestamp`", '1', "timestamp", "timestamp");
 $this->chintantable->createelement("`tingblog_blog`.`description`", '0', "content", "content");
 $this->chintantable->createelement("group_concat(`tingblog_tags`.`name` separator ',')", '0', "tags", "tags");
