@@ -99,20 +99,10 @@ $this->load->view("json",$data);
 }
 function getallgif()
 {
-$elements=array();
-$elements[0]=new stdClass();
-$elements[0]->field="`tingblog_gif`.`id`";
-$elements[0]->sort="1";
-$elements[0]->header="id";
-$elements[0]->alias="id";
 
-$elements=array();
-$elements[1]=new stdClass();
-$elements[1]->field="`tingblog_gif`.`name`";
-$elements[1]->sort="1";
-$elements[1]->header="name";
-$elements[1]->alias="name";
-
+$this->chintantable->createelement("`tingblog_gif`.`id`", '1', "ID", "id");
+$this->chintantable->createelement("`tingblog_gif`.`image`", '0', "image", "image");
+    
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
